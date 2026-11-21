@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://the-best-diy-home.vercel.app/sitemap.xml
