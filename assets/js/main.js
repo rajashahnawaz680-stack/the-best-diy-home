@@ -289,7 +289,7 @@
       if (titleEl) titleEl.textContent = "Browse DIY Ideas and Categories";
       if (metaEl) {
         metaEl.textContent = "Type a word above to search, or browse everything below — " +
-          "our published article and all eight categories.";
+          "our published articles and all eight categories.";
       }
       resultsEl.innerHTML = SEARCH_DATA.map(cardHTML).join("");
     } else {
@@ -299,7 +299,7 @@
         if (metaEl) {
           metaEl.textContent = results.length +
             (results.length === 1 ? " result" : " results") +
-            " matched your search across our article and categories.";
+            " matched your search across our articles and categories.";
         }
         resultsEl.innerHTML = results.map(cardHTML).join("");
       } else {
