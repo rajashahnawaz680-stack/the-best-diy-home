@@ -1,7 +1,7 @@
 /* The Best DIY Home — site behaviour (v4)
    Header mega menu, mobile navigation, header search row, live search
    suggestions and the search results page. Vanilla JS, no dependencies.
-   All search data below is real site content: 1 published article and the
+   All search data below is real site content: 2 published articles and the
    8 site categories. Nothing here invents articles, dates or prices. */
 (function () {
   "use strict";
@@ -18,6 +18,16 @@
 
   /* ---------------- Search data (real content only) ---------------- */
   var SEARCH_DATA = [
+    {
+      type: "Article",
+      title: "Small Bedroom Makeover Ideas for a Cozy, Clutter-Free Space",
+      description: "Small bedroom makeover ideas for beginners: layout, colour, light, storage and wall decor that make a compact bedroom feel bigger, calmer and cosier — without a renovation.",
+      category: "Bedroom Makeover",
+      url: "posts/small-bedroom-makeover-ideas.html",
+      image: "assets/images/small-bedroom-hero.jpg",
+      imageAlt: "Compact bedroom with a neatly made bed, dark blue wall panels, wall lights and a blue runner",
+      keywords: "small bedroom tiny bedroom compact bedroom cozy clutter-free clutter free storage layout colour color light wall decor under bed shelves hooks mirror lamp beginner makeover bigger"
+    },
     {
       type: "Article",
       title: "Budget Bedroom Makeover Ideas That Make a Big Difference",
