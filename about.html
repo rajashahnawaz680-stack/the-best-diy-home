@@ -14,45 +14,80 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About Us — The Best DIY Home">
 <meta name="twitter:description" content="About The Best DIY Home: a DIY home decor and budget makeovers website helping beginners create beautiful, comfortable homes without spending too much money.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <header class="site-header">
-  <div class="topbar"><div class="wrap"><p>Budget DIY makeovers, handmade decor and renter-friendly ideas — a beautiful home, made by hand and made affordable.</p></div></div>
-  <div class="wrap header-inner">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="wrap header-bar">
     <a class="brand" href="index.html" aria-label="The Best DIY Home — home">
       <svg class="brand-mark" viewBox="0 0 48 48" width="38" height="38" aria-hidden="true"><path d="M6 26 L24 8 L42 26 V40 a2 2 0 0 1-2 2 H28 V30 H20 V42 H8 a2 2 0 0 1-2-2 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="24" cy="24" r="2.6" fill="currentColor"/></svg>
       <span class="brand-text">The <span class="brand-best">Best</span> DIY Home<small>Beautiful Home Decor &amp; Creative Makeovers on a Budget</small></span>
     </a>
-    <a class="btn btn-header" href="posts/budget-bedroom-makeover-ideas.html">Read the Bedroom Guide</a>
-  </div>
-  <nav class="main-nav" aria-label="Main navigation">
-    <div class="wrap">
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#categories">Categories</a></li>
+        <li><button type="button" class="mega-toggle" aria-expanded="false" aria-haspopup="true" aria-controls="mega-menu">Categories<span class="chev" aria-hidden="true">&#9662;</span></button></li>
+        <li><a href="index.html#diy-ideas">DIY Ideas</a></li>
+        <li><a href="index.html#makeovers">Makeovers</a></li>
+        <li><a href="categories/seasonal-home-decor.html">Seasonal Decor</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn search-toggle" aria-expanded="false" aria-controls="search-row" aria-label="Open search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg></button>
+      <button type="button" class="icon-btn nav-toggle" aria-expanded="false" aria-controls="mobile-panel" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+  <div class="mega-menu" id="mega-menu" hidden>
+    <div class="wrap">
+      <div class="mega-head"><h2>Explore Our Categories</h2><a href="index.html#categories">See all categories</a></div>
+      <div class="mega-grid">
+          <a class="mega-card" href="categories/bedroom-makeover.html"><img src="assets/images/cat-bedroom.jpg" alt="Bright bedroom with white bedding, bedside lamps and a framed print above the bed" loading="lazy"><span><span class="mega-name">Bedroom Makeover</span><span class="mega-desc">Cozy, restful bedrooms on a realistic budget — layout, colour, storage and finishing touches.</span></span></a>
+          <a class="mega-card" href="categories/diy-wall-decor.html"><img src="assets/images/cat-wall-decor.jpg" alt="Gallery wall of six framed prints above a tan sofa in a living room" loading="lazy"><span><span class="mega-name">DIY Wall Decor</span><span class="mega-desc">Handmade art, gallery walls and shelves that turn blank walls into focal points.</span></span></a>
+          <a class="mega-card" href="categories/dollar-store-diy-decor.html"><img src="assets/images/cat-dollar-store.jpg" alt="Tall glass floor vase filled with dried pampas grass beside a sofa" loading="lazy"><span><span class="mega-name">Dollar Store DIY Decor</span><span class="mega-desc">Affordable finds transformed into vases, centrepieces and seasonal decor.</span></span></a>
+          <a class="mega-card" href="categories/renter-friendly-decor.html"><img src="assets/images/cat-renter.jpg" alt="Small apartment living and dining space with a red armchair by a large window" loading="lazy"><span><span class="mega-name">Renter-Friendly Decor</span><span class="mega-desc">No-damage, no-drill ideas that make a rental feel like home and come down cleanly.</span></span></a>
+          <a class="mega-card" href="categories/budget-living-room-makeover.html"><img src="assets/images/cat-living-room.jpg" alt="Neutral living room with a sectional sofa, coffee table and a decorated gallery wall" loading="lazy"><span><span class="mega-name">Budget Living Room Makeover</span><span class="mega-desc">Affordable living room refreshes — layout, furniture makeovers and cozy styling.</span></span></a>
+          <a class="mega-card" href="categories/handmade-home-decorations.html"><img src="assets/images/cat-handmade.jpg" alt="Colourful balls of yarn with crochet hooks" loading="lazy"><span><span class="mega-name">Handmade Home Decorations</span><span class="mega-desc">Crafted vases, centrepieces and accessories, including recycled-material projects.</span></span></a>
+          <a class="mega-card" href="categories/seasonal-home-decor.html"><img src="assets/images/cat-seasonal.jpg" alt="Christmas greenery, eucalyptus and red berries arranged on a light table" loading="lazy"><span><span class="mega-name">Seasonal Home Decor</span><span class="mega-desc">Spring through winter, plus Christmas and Halloween — fresh looks through the year.</span></span></a>
+          <a class="mega-card" href="categories/small-bathroom-makeover.html"><img src="assets/images/cat-bathroom.jpg" alt="Modern bathroom with a freestanding tub, vessel sink and green plants" loading="lazy"><span><span class="mega-name">Small Bathroom Makeover</span><span class="mega-desc">Space-saving storage, organisation and decor for compact bathrooms.</span></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="search-row" id="search-row" hidden>
+    <div class="wrap">
+      <form class="search-form header-search-form" role="search" action="search.html" method="get"><div class="search-field"><label class="sr-only" for="q-header-q">Search The Best DIY Home</label><input id="header-q" name="q" type="search" placeholder="Search DIY projects, room makeovers, wall decor ideas..." autocomplete="off"><button type="button" class="search-clear" aria-label="Clear search">&times;</button><div class="suggestions" hidden></div></div><button class="btn" type="submit">Search</button></form>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobile-panel" hidden>
+    <div class="wrap">
+      <form class="search-form mobile-search-form" role="search" action="search.html" method="get"><div class="search-field"><label class="sr-only" for="q-mobile-q">Search The Best DIY Home</label><input id="mobile-q" name="q" type="search" placeholder="Search DIY projects, room makeovers, wall decor ideas..." autocomplete="off"><button type="button" class="search-clear" aria-label="Clear search">&times;</button><div class="suggestions" hidden></div></div><button class="btn" type="submit">Search</button></form>
+      <ul class="mobile-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#diy-ideas">DIY Ideas</a></li>
+        <li><a href="index.html#makeovers">Makeovers</a></li>
+        <li><a href="categories/seasonal-home-decor.html">Seasonal Decor</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-    </div>
-  </nav>
-  <nav class="category-nav" aria-label="Categories">
-    <div class="wrap">
-      <span class="category-nav-label">Categories:</span>
-      <ul>
-          <li><a href="categories/bedroom-makeover.html">Bedroom Makeover</a></li>
-          <li><a href="categories/diy-wall-decor.html">DIY Wall Decor</a></li>
-          <li><a href="categories/dollar-store-diy-decor.html">Dollar Store DIY Decor</a></li>
-          <li><a href="categories/renter-friendly-decor.html">Renter-Friendly Decor</a></li>
-          <li><a href="categories/budget-living-room-makeover.html">Budget Living Room Makeover</a></li>
-          <li><a href="categories/handmade-home-decorations.html">Handmade Home Decorations</a></li>
-          <li><a href="categories/seasonal-home-decor.html">Seasonal Home Decor</a></li>
-          <li><a href="categories/small-bathroom-makeover.html">Small Bathroom Makeover</a></li>
+      <p class="mobile-cat-label">Categories</p>
+      <ul class="mobile-cats">
+        <li><a href="categories/bedroom-makeover.html">Bedroom Makeover</a></li>
+        <li><a href="categories/diy-wall-decor.html">DIY Wall Decor</a></li>
+        <li><a href="categories/dollar-store-diy-decor.html">Dollar Store DIY Decor</a></li>
+        <li><a href="categories/renter-friendly-decor.html">Renter-Friendly Decor</a></li>
+        <li><a href="categories/budget-living-room-makeover.html">Budget Living Room Makeover</a></li>
+        <li><a href="categories/handmade-home-decorations.html">Handmade Home Decorations</a></li>
+        <li><a href="categories/seasonal-home-decor.html">Seasonal Home Decor</a></li>
+        <li><a href="categories/small-bathroom-makeover.html">Small Bathroom Makeover</a></li>
       </ul>
     </div>
-  </nav>
+  </div>
 </header>
-<main class="page-main">
+<main class="page-main" id="main">
   <div class="wrap">
     <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; About The Best DIY Home</p>
     <article class="prose">
@@ -77,27 +112,22 @@
       <p class="footer-brand">The <span class="brand-best">Best</span> DIY Home</p>
       <p>Beautiful Home Decor &amp; Creative Makeovers on a Budget. Practical DIY ideas, budget room makeovers and renter-friendly solutions for beginners and home decor enthusiasts.</p>
     </div>
-    <nav aria-label="Footer categories">
-      <h2>Categories</h2>
+    <nav aria-label="Footer explore categories">
+      <h2>Explore Categories</h2>
       <ul>
-          <li><a href="categories/bedroom-makeover.html">Bedroom Makeover</a></li>
-          <li><a href="categories/diy-wall-decor.html">DIY Wall Decor</a></li>
-          <li><a href="categories/dollar-store-diy-decor.html">Dollar Store DIY Decor</a></li>
-          <li><a href="categories/renter-friendly-decor.html">Renter-Friendly Decor</a></li>
-          <li><a href="categories/budget-living-room-makeover.html">Budget Living Room Makeover</a></li>
-          <li><a href="categories/handmade-home-decorations.html">Handmade Home Decorations</a></li>
-          <li><a href="categories/seasonal-home-decor.html">Seasonal Home Decor</a></li>
-          <li><a href="categories/small-bathroom-makeover.html">Small Bathroom Makeover</a></li>
+        <li><a href="categories/bedroom-makeover.html">Bedroom Makeover</a></li>
+        <li><a href="categories/diy-wall-decor.html">DIY Wall Decor</a></li>
+        <li><a href="categories/dollar-store-diy-decor.html">Dollar Store DIY Decor</a></li>
+        <li><a href="categories/renter-friendly-decor.html">Renter-Friendly Decor</a></li>
       </ul>
     </nav>
-    <nav aria-label="Footer start here">
-      <h2>Start Here</h2>
+    <nav aria-label="Footer more categories">
+      <h2>More Categories</h2>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="posts/budget-bedroom-makeover-ideas.html">Budget Bedroom Makeover Ideas</a></li>
-        <li><a href="index.html#categories">Pick Your Next Makeover</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="categories/budget-living-room-makeover.html">Budget Living Room Makeover</a></li>
+        <li><a href="categories/handmade-home-decorations.html">Handmade Home Decorations</a></li>
+        <li><a href="categories/seasonal-home-decor.html">Seasonal Home Decor</a></li>
+        <li><a href="categories/small-bathroom-makeover.html">Small Bathroom Makeover</a></li>
       </ul>
     </nav>
     <nav aria-label="Footer information">
@@ -116,5 +146,6 @@
     <p>&copy; The Best DIY Home. Made for people who want a beautiful home without spending a lot of money.</p>
   </div>
 </footer>
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>
