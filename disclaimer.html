@@ -20,27 +20,33 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<div class="announce">DIY Home Decor &bull; Budget Makeovers &bull; Handmade Decorations</div>
 <header class="site-header">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="wrap header-bar">
-    <a class="brand" href="index.html" aria-label="The Best DIY Home — home">
-      <svg class="brand-mark" viewBox="0 0 48 48" width="38" height="38" aria-hidden="true"><path d="M6 26 L24 8 L42 26 V40 a2 2 0 0 1-2 2 H28 V30 H20 V42 H8 a2 2 0 0 1-2-2 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="24" cy="24" r="2.6" fill="currentColor"/></svg>
-      <span class="brand-text">The <span class="brand-best">Best</span> DIY Home<small>Beautiful Home Decor &amp; Creative Makeovers on a Budget</small></span>
+  <div class="wrap header-main">
+    <div class="header-left">
+      <button type="button" class="icon-btn search-toggle" aria-expanded="false" aria-controls="search-row" aria-label="Open search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg></button>
+    </div>
+    <a class="brand-lockup" href="index.html" aria-label="The Best DIY Home — home">
+      <svg class="brand-mark" viewBox="0 0 48 48" width="34" height="34" aria-hidden="true"><path d="M6 26 L24 8 L42 26 V40 a2 2 0 0 1-2 2 H28 V30 H20 V42 H8 a2 2 0 0 1-2-2 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="24" cy="24" r="2.6" fill="currentColor"/></svg>
+      <span class="brand-words"><span class="brand-name">The <span class="brand-best">Best</span> DIY Home</span><span class="brand-tag">Beautiful Home Decor &amp; Creative Makeovers on a Budget</span></span>
     </a>
-    <nav class="main-nav" aria-label="Main navigation">
+    <div class="header-right">
+      <a class="btn header-cta" href="posts/budget-bedroom-makeover-ideas.html">Read the Bedroom Guide</a>
+      <button type="button" class="icon-btn nav-toggle" aria-expanded="false" aria-controls="mobile-panel" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+  <div class="nav-row">
+    <nav class="main-nav wrap" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><button type="button" class="mega-toggle" aria-expanded="false" aria-haspopup="true" aria-controls="mega-menu">Categories<span class="chev" aria-hidden="true">&#9662;</span></button></li>
-        <li><a href="index.html#diy-ideas">DIY Ideas</a></li>
-        <li><a href="index.html#makeovers">Makeovers</a></li>
+        <li><a href="index.html#latest">DIY Ideas</a></li>
+        <li><a href="categories/bedroom-makeover.html">Makeovers</a></li>
         <li><a href="categories/seasonal-home-decor.html">Seasonal Decor</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
-    <div class="header-actions">
-      <button type="button" class="icon-btn search-toggle" aria-expanded="false" aria-controls="search-row" aria-label="Open search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg></button>
-      <button type="button" class="icon-btn nav-toggle" aria-expanded="false" aria-controls="mobile-panel" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    </div>
   </div>
   <div class="mega-menu" id="mega-menu" hidden>
     <div class="wrap">
@@ -59,16 +65,16 @@
   </div>
   <div class="search-row" id="search-row" hidden>
     <div class="wrap">
-      <form class="search-form header-search-form" role="search" action="search.html" method="get"><div class="search-field"><label class="sr-only" for="q-header-q">Search The Best DIY Home</label><input id="header-q" name="q" type="search" placeholder="Search DIY projects, room makeovers, wall decor ideas..." autocomplete="off"><button type="button" class="search-clear" aria-label="Clear search">&times;</button><div class="suggestions" hidden></div></div><button class="btn" type="submit">Search</button></form>
+      <form class="search-form header-search-form" role="search" action="search.html" method="get"><div class="search-field"><label class="sr-only" for="header-q">Search The Best DIY Home</label><input id="header-q" name="q" type="search" placeholder="Search DIY projects, room makeovers, wall decor ideas..." autocomplete="off"><button type="button" class="search-clear" aria-label="Clear search">&times;</button><div class="suggestions" hidden></div></div><button class="btn" type="submit">Search</button></form>
     </div>
   </div>
   <div class="mobile-panel" id="mobile-panel" hidden>
     <div class="wrap">
-      <form class="search-form mobile-search-form" role="search" action="search.html" method="get"><div class="search-field"><label class="sr-only" for="q-mobile-q">Search The Best DIY Home</label><input id="mobile-q" name="q" type="search" placeholder="Search DIY projects, room makeovers, wall decor ideas..." autocomplete="off"><button type="button" class="search-clear" aria-label="Clear search">&times;</button><div class="suggestions" hidden></div></div><button class="btn" type="submit">Search</button></form>
+      <form class="search-form mobile-search-form" role="search" action="search.html" method="get"><div class="search-field"><label class="sr-only" for="mobile-q">Search The Best DIY Home</label><input id="mobile-q" name="q" type="search" placeholder="Search DIY projects, room makeovers, wall decor ideas..." autocomplete="off"><button type="button" class="search-clear" aria-label="Clear search">&times;</button><div class="suggestions" hidden></div></div><button class="btn" type="submit">Search</button></form>
       <ul class="mobile-nav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#diy-ideas">DIY Ideas</a></li>
-        <li><a href="index.html#makeovers">Makeovers</a></li>
+        <li><a href="index.html#latest">DIY Ideas</a></li>
+        <li><a href="categories/bedroom-makeover.html">Makeovers</a></li>
         <li><a href="categories/seasonal-home-decor.html">Seasonal Decor</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -145,6 +151,7 @@
   </div>
   <div class="wrap footer-bottom">
     <p>&copy; The Best DIY Home. Made for people who want a beautiful home without spending a lot of money.</p>
+    <p>Beautiful Home Decor &amp; Creative Makeovers on a Budget</p>
   </div>
 </footer>
 <script src="assets/js/main.js" defer></script>
