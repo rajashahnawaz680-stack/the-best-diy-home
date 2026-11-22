@@ -15,7 +15,8 @@ window.ARTICLES = [
     "excerpt": "A small apartment living room can still feel comfortable, bright and personal. These 35 ideas — from corner sofas and glass tables to bookshelf walls, mirrors and window seats — each come with a photo and a short, simple explanation.",
     "datePublished": "2026-11-22",
     "readTime": "About 15 min read (estimated)",
-    "keywords": "small living room ideas, small apartment living room, tiny living room decor, small living room furniture, apartment living room ideas, budget living room makeover, small space living room ideas"
+    "keywords": "small living room ideas, small apartment living room, tiny living room decor, small living room furniture, apartment living room ideas, budget living room makeover, small space living room ideas",
+    "status": "published"
   },
   {
     "title": "30+ DIY Wall Decor Ideas on a Budget",
@@ -27,7 +28,8 @@ window.ARTICLES = [
     "excerpt": "Blank walls make a room feel unfinished, but decorating them does not need a big spend: 30 budget DIY wall decor ideas — gallery walls, macrame, washi tape frames, basket walls, pressed flowers, painted arches and more — each with a photo.",
     "datePublished": "2026-11-22",
     "readTime": "About 14 min read (estimated)",
-    "keywords": "diy wall decor budget gallery wall macrame washi tape frames basket wall botanical prints abstract canvas plate wall straw hats floating shelves wallpaper panels photo string fairy lights yarn tassels pressed flowers rope mirror tapestry paper flowers chalkboard embroidery hoop painted arch hanging plants window frame map peg rail wall clock clipboard stencil wreath blanket ladder textile art photo grid handmade wall art cheap"
+    "keywords": "diy wall decor budget gallery wall macrame washi tape frames basket wall botanical prints abstract canvas plate wall straw hats floating shelves wallpaper panels photo string fairy lights yarn tassels pressed flowers rope mirror tapestry paper flowers chalkboard embroidery hoop painted arch hanging plants window frame map peg rail wall clock clipboard stencil wreath blanket ladder textile art photo grid handmade wall art cheap",
+    "status": "published"
   },
   {
     "category": "Bedroom Makeover",
@@ -39,6 +41,7 @@ window.ARTICLES = [
     "keywords": "small bedroom makeover ideas, cozy small bedroom, small bedroom decor, tiny bedroom ideas, cozy bedroom on a budget, small bedroom storage ideas, fairy lights bedroom, layered bedding, small bedroom cozy look",
     "readTime": "About 16 min read (estimated)",
     "title": "35+ Small Bedroom Makeover Ideas for a Cozy Look",
-    "url": "posts/small-bedroom-makeover-ideas-for-a-cozy-look.html"
+    "url": "posts/small-bedroom-makeover-ideas-for-a-cozy-look.html",
+    "status": "published"
   }
 ];
