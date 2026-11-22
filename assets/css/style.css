@@ -715,3 +715,7 @@ form button:hover{background:var(--green-dark)}
   justify-content:space-between;text-align:left}
 .footer-bottom p{margin:0}
 @media (max-width:640px){.footer-bottom{justify-content:center;text-align:center}}
+
+/* Footer tagline under the logo. */
+.footer-tagline{margin:7px 0 0;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:#C9CFBF}
