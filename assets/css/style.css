@@ -719,3 +719,21 @@ form button:hover{background:var(--green-dark)}
 /* Footer tagline under the logo. */
 .footer-tagline{margin:7px 0 0;font-size:.72rem;font-weight:700;letter-spacing:.18em;
   text-transform:uppercase;color:#C9CFBF}
+
+/* Mobile menu: Categories is a tap-to-open list of only the categories. */
+.mobile-cat-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;
+  background:none;border:0;border-top:1px solid var(--hairline);cursor:pointer;
+  font:inherit;font-weight:700;color:var(--charcoal);padding:13px 2px;margin-top:6px;text-align:left}
+.mobile-cat-toggle .chev{font-size:.7rem;color:var(--muted)}
+.mobile-cats[hidden]{display:none}
+
+/* Mobile menu: Seasonal Decor opens its Christmas/New Year menu,
+   same as on desktop. */
+.mobile-sub-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;
+  background:none;border:0;border-bottom:1px solid var(--border);cursor:pointer;
+  font:inherit;font-weight:600;color:var(--charcoal);padding:10px 6px;text-align:left}
+.mobile-sub-toggle .chev{font-size:.7rem;color:var(--muted)}
+.mobile-sub{list-style:none;margin:0;padding:0}
+.mobile-sub[hidden]{display:none}
+.mobile-sub li a{display:block;padding:9px 6px 9px 22px;text-decoration:none;
+  color:var(--muted);font-size:.95rem;border-bottom:1px solid var(--border)}
