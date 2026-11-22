@@ -698,3 +698,7 @@ form button:hover{background:var(--green-dark)}
 .sub-menu li a{display:block;padding:9px 12px;border-radius:8px;text-transform:none;
   letter-spacing:.02em;font-size:.9rem;font-weight:600}
 .sub-menu li a:hover{background:var(--bg);color:var(--green)}
+
+/* Fix: the nav's generic ul display rule overrode the sub-menu's
+   hidden state — force it closed until the chevron opens it. */
+.sub-menu[hidden]{display:none !important}
