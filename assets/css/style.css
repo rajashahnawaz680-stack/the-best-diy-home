@@ -686,3 +686,15 @@ form button:hover{background:var(--green-dark)}
   background:var(--surface);border:1.5px solid var(--sage);padding:9px 18px;
   border-radius:999px;text-decoration:none;transition:background .2s ease,color .2s ease}
 .season-menu a:hover{background:var(--green);border-color:var(--green);color:#fff}
+
+/* Header Seasonal Decor dropdown (click-only, like Categories). */
+.main-nav li.has-sub{position:relative;display:flex;align-items:center}
+.sub-toggle{background:none;border:0;cursor:pointer;color:var(--charcoal);
+  padding:9px 8px 9px 0;font-size:.68rem;line-height:1}
+.sub-toggle:hover{color:var(--green)}
+.sub-menu{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  box-shadow:var(--shadow-md);padding:7px;min-width:216px;z-index:140;list-style:none;margin:0}
+.sub-menu li a{display:block;padding:9px 12px;border-radius:8px;text-transform:none;
+  letter-spacing:.02em;font-size:.9rem;font-weight:600}
+.sub-menu li a:hover{background:var(--bg);color:var(--green)}
