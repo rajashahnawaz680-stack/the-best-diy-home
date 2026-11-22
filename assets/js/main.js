@@ -1,10 +1,21 @@
-/* The Best DIY Home — site behaviour (v4)
-   Header mega menu, mobile navigation, header search row, live search
-   suggestions and the search results page. Vanilla JS, no dependencies.
-   All search data below is real site content: 2 published articles and the
-   8 site categories. Nothing here invents articles, dates or prices. */
+/* The Best DIY Home — site behaviour (v6)
+   Header mega menu (click-only), mobile navigation, header search row,
+   live search suggestions, the search results page, the data-driven
+   Latest / archive article grids and the newsletter form.
+   Vanilla JS, no dependencies.
+   Article data comes from assets/js/articles-data.js (window.ARTICLES) —
+   the site's single article data source. Only articles with
+   status "published" ever appear publicly. Category data below is the
+   site's 8 real categories. Nothing here invents articles, dates,
+   prices or subscribers. */
 (function () {
   "use strict";
+
+  /* Newsletter integration point: paste the form endpoint of the email
+     provider here when one is connected (e.g. a Formspree / provider
+     POST URL). While it is empty, the form honestly tells the visitor
+     that sign-up is not connected yet and collects nothing. */
+  var NEWSLETTER_ENDPOINT = "";
 
   /* Root prefix of the site, derived from this script's own URL so the
      same file works from /, /categories/ and /posts/. */
@@ -16,28 +27,65 @@
     root = src.replace(/assets\/js\/main\.js.*$/, "");
   }
 
-  /* ---------------- Search data (real content only) ---------------- */
-  var SEARCH_DATA = [
-    {
-      type: "Article",
-      title: "Small Bedroom Makeover Ideas for a Cozy, Clutter-Free Space",
-      description: "Small bedroom makeover ideas for beginners: layout, colour, light, storage and wall decor that make a compact bedroom feel bigger, calmer and cosier — without a renovation.",
-      category: "Bedroom Makeover",
-      url: "posts/small-bedroom-makeover-ideas.html",
-      image: "assets/images/small-bedroom-hero.jpg",
-      imageAlt: "Compact bedroom with a neatly made bed, dark blue wall panels, wall lights and a blue runner",
-      keywords: "small bedroom tiny bedroom compact bedroom cozy clutter-free clutter free storage layout colour color light wall decor under bed shelves hooks mirror lamp beginner makeover bigger"
-    },
-    {
-      type: "Article",
-      title: "Budget Bedroom Makeover Ideas That Make a Big Difference",
-      description: "Beginner-friendly budget bedroom makeover ideas grouped by walls, bedding, lighting, storage and layout — small changes that make a room feel fresh and cosy.",
-      category: "Bedroom Makeover",
-      url: "posts/budget-bedroom-makeover-ideas.html",
-      image: "assets/images/article-bedroom-1.jpg",
-      imageAlt: "Bedroom with white quilted bedding, orange cushions and a bold floral painting above the bed",
-      keywords: "bedroom budget makeover bedding storage lighting walls layout cozy small bedroom furniture cushions throw mirror lamp beginner weekend"
-    },
+  /* ---------------- Article data (single source of truth) ---------------- */
+  var ALL_ARTICLES = (typeof window !== "undefined" && window.ARTICLES) || [];
+
+  /* Published articles only, newest first. The sort is stable, so
+     articles sharing a date keep the data file's newest-first order. */
+  function publishedArticles(list) {
+    return (list || [])
+      .map(function (a, i) { return { a: a, i: i }; })
+      .filter(function (x) { return x.a && x.a.status === "published"; })
+      .sort(function (x, y) {
+        var d = String(y.a.datePublished || "").localeCompare(
+          String(x.a.datePublished || ""));
+        return d !== 0 ? d : x.i - y.i;
+      })
+      .map(function (x) { return x.a; });
+  }
+
+  function articleCardHTML(a) {
+    return '<article class="article-card">' +
+      '<a class="ac-visual" href="' + root + a.url + '">' +
+        '<img src="' + root + a.image + '" alt="' + (a.imageAlt || "") +
+          '" loading="lazy">' +
+        '<span class="pill-cat">' + a.category + "</span></a>" +
+      '<div class="ac-body">' +
+        (a.readTime ? '<p class="ac-meta">' + a.readTime + "</p>" : "") +
+        '<h3><a href="' + root + a.url + '">' + a.title + "</a></h3>" +
+        '<p class="ac-excerpt">' + a.excerpt + "</p>" +
+        '<div class="ac-foot"><span class="ac-brand">The Best DIY Home</span>' +
+        '<a href="' + root + a.url + '">Read Article &rarr;</a></div>' +
+      "</div></article>";
+  }
+
+  /* Homepage Latest: newest published articles, maximum 15. */
+  var latestGrid = document.getElementById("latest-grid");
+  if (latestGrid) {
+    var published = publishedArticles(ALL_ARTICLES);
+    var shown = published.slice(0, 15);
+    latestGrid.innerHTML = shown.map(articleCardHTML).join("");
+    var latestCount = document.getElementById("latest-count");
+    if (latestCount) {
+      latestCount.textContent = "Showing " + shown.length + " of " +
+        published.length + " published articles";
+    }
+  }
+
+  /* Archive page: every published article, no cap. */
+  var archiveGrid = document.getElementById("articles-grid");
+  if (archiveGrid) {
+    var allPublished = publishedArticles(ALL_ARTICLES);
+    archiveGrid.innerHTML = allPublished.map(articleCardHTML).join("");
+    var archiveCount = document.getElementById("articles-count");
+    if (archiveCount) {
+      archiveCount.textContent = "Showing " + allPublished.length + " of " +
+        allPublished.length + " published articles";
+    }
+  }
+
+  /* ---------------- Search data (articles derived + categories) ------- */
+  var CATEGORY_DATA = [
     {
       type: "Category",
       title: "Bedroom Makeover",
@@ -101,12 +149,12 @@
     {
       type: "Category",
       title: "Seasonal Home Decor",
-      description: "Spring through winter, plus Christmas and Halloween — fresh looks through the year.",
+      description: "Christmas and New Year decor — festive ideas for the holiday season.",
       category: "Seasonal Home Decor",
       url: "categories/seasonal-home-decor.html",
       image: "assets/images/cat-seasonal.jpg",
       imageAlt: "Christmas greenery, eucalyptus and red berries arranged on a light table",
-      keywords: "seasonal home decor spring summer fall autumn winter christmas halloween seasonal diy crafts wreath garland"
+      keywords: "seasonal home decor christmas new year holiday festive diy crafts wreath garland decorations celebration"
     },
     {
       type: "Category",
@@ -119,6 +167,21 @@
       keywords: "small bathroom makeover budget decorations diy storage organization organisation accessories space saving wall decor tiny"
     }
   ];
+
+  var ARTICLE_SEARCH_DATA = publishedArticles(ALL_ARTICLES).map(function (a) {
+    return {
+      type: "Article",
+      title: a.title,
+      description: a.excerpt,
+      category: a.category,
+      url: a.url,
+      image: a.image,
+      imageAlt: a.imageAlt || "",
+      keywords: a.keywords || ""
+    };
+  });
+
+  var SEARCH_DATA = ARTICLE_SEARCH_DATA.concat(CATEGORY_DATA);
 
   function haystack(item) {
     return (item.title + " " + item.description + " " + item.category + " " +
@@ -167,7 +230,12 @@
       "</div></article>";
   }
 
-  /* ---------------- Mega menu ---------------- */
+  /* ---------------- Mega menu (click-only, controlled) ----------------
+     Closed by default. Opens ONLY when the Categories toggle itself is
+     clicked; the toggle stops propagation so document handlers never
+     fight it. Clicking any other nav item or anywhere outside the menu
+     closes it; choosing a category navigates and closes it; Escape
+     closes it. No hover or focus auto-open anywhere. */
   var megaToggle = document.querySelector(".mega-toggle");
   var megaMenu = document.getElementById("mega-menu");
   if (megaToggle && megaMenu) {
@@ -178,23 +246,18 @@
     var megaOpen = function () {
       return megaToggle.getAttribute("aria-expanded") === "true";
     };
-    megaToggle.addEventListener("click", function () { setMega(!megaOpen()); });
-    var header = document.querySelector(".site-header");
-    header.addEventListener("mouseenter", function () {
-      if (window.innerWidth > 900) setMega(true);
+    megaToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setMega(!megaOpen());
     });
-    header.addEventListener("mouseleave", function () {
-      if (window.innerWidth > 900 && !megaMenu.contains(document.activeElement) &&
-          document.activeElement !== megaToggle) setMega(false);
-    });
-    megaMenu.addEventListener("focusout", function () {
-      setTimeout(function () {
-        if (!megaMenu.contains(document.activeElement) &&
-            document.activeElement !== megaToggle) setMega(false);
-      }, 0);
+    megaMenu.addEventListener("click", function (e) {
+      var link = e.target && e.target.closest ? e.target.closest("a") : null;
+      if (link) setMega(false);
     });
     document.addEventListener("click", function (e) {
-      if (megaOpen() && !header.contains(e.target)) setMega(false);
+      if (!megaOpen()) return;
+      if (megaMenu.contains(e.target) || megaToggle.contains(e.target)) return;
+      setMega(false);
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && megaOpen()) {
@@ -325,4 +388,67 @@
       }
     }
   }
+
+  /* ---------------- Newsletter form ----------------
+     Honest by design: success is shown ONLY after the connected email
+     provider's endpoint confirms the subscription. With no endpoint
+     configured, the visitor is told plainly that sign-up is not
+     connected yet and that no email was collected or stored. */
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email || "").trim());
+  }
+
+  var newsForm = document.getElementById("newsletter-form");
+  if (newsForm) {
+    var newsMsg = document.getElementById("newsletter-msg");
+    var setNewsMsg = function (kind, text) {
+      if (!newsMsg) return;
+      newsMsg.className = "news-msg " + kind;
+      newsMsg.textContent = text;
+    };
+    newsForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var input = newsForm.querySelector('input[name="email"]');
+      var email = input ? input.value.trim() : "";
+      if (!validateEmail(email)) {
+        setNewsMsg("error",
+          "Please enter a valid email address — for example you@example.com.");
+        if (input) input.focus();
+        return;
+      }
+      if (!NEWSLETTER_ENDPOINT) {
+        setNewsMsg("notice",
+          "Newsletter signup is not connected yet. Please check back soon — no email was collected.");
+        return;
+      }
+      setNewsMsg("notice", "Subscribing…");
+      fetch(NEWSLETTER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ email: email })
+      }).then(function (res) {
+        if (res && res.ok) {
+          setNewsMsg("success",
+            "Thank you — your subscription is confirmed. Fresh DIY ideas are on their way to your inbox.");
+          newsForm.reset();
+        } else {
+          setNewsMsg("error",
+            "Something went wrong and you were not subscribed. Please try again later.");
+        }
+      }).catch(function () {
+        setNewsMsg("error",
+          "Something went wrong and you were not subscribed. Please try again later.");
+      });
+    });
+  }
+
+  /* Small public namespace — also used by the local test harness. */
+  window.TBDH = {
+    ARTICLES: ALL_ARTICLES,
+    publishedArticles: publishedArticles,
+    articleCardHTML: articleCardHTML,
+    searchItems: searchItems,
+    validateEmail: validateEmail,
+    NEWSLETTER_ENDPOINT: NEWSLETTER_ENDPOINT
+  };
 })();
