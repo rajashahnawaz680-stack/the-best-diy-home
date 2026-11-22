@@ -709,3 +709,9 @@ form button:hover{background:var(--green-dark)}
 .main-nav a{padding-top:12px;padding-bottom:12px}
 .sub-toggle{padding-top:12px;padding-bottom:12px}
 .brand-name{font-size:1.5rem}
+
+/* Footer bottom: copyright left, tagline right. */
+.footer-bottom{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;
+  justify-content:space-between;text-align:left}
+.footer-bottom p{margin:0}
+@media (max-width:640px){.footer-bottom{justify-content:center;text-align:center}}
