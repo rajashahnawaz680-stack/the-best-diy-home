@@ -649,3 +649,40 @@ form button:hover{background:var(--green-dark)}
 .brand-tag{font-size:.58rem;margin-top:2px}
 .main-nav a,.mega-toggle{padding:9px 14px}
 .icon-btn{width:40px;height:40px}
+
+/* Footer brand — reference type: one line, mark left + full name in
+   serif, description under it, prominent red Pinterest pill. */
+.footer-logo{display:inline-flex;flex-direction:row;align-items:center;gap:11px}
+.footer-logo .brand-mark{width:30px;height:auto;color:var(--sage)}
+.footer-brand-name{font-family:var(--serif);font-size:1.38rem;color:#fff;white-space:nowrap}
+.footer-pinterest{padding:11px 22px;font-size:.95rem}
+
+/* Logo — "Heart of the Home" (owner's chosen Idea B): house outline
+   with a terracotta heart, name beside it. Header + footer. */
+.brand-lockup{flex-direction:row;align-items:center;gap:12px;text-align:left}
+.brand-lockup .brand-words{text-align:left}
+.brand-lockup .brand-name{font-size:1.5rem}
+.brand-mark{color:var(--green)}
+.brand-mark .heart{fill:#B65C38}
+.footer-logo .brand-mark{width:32px;height:auto;color:#E9E4D8}
+.footer-logo .brand-mark .heart{fill:#D08A63}
+@media (max-width:560px){
+  .brand-lockup{gap:9px}
+  .brand-lockup .brand-name{font-size:1.12rem}
+  .brand-lockup .brand-mark{width:32px;height:auto}
+}
+
+/* Seasonal sub-links in menus: Christmas + New Year under Seasonal. */
+.mega-item{display:flex;flex-direction:column}
+.mega-sub{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px;padding-left:9px}
+.mega-sub a{font-size:.78rem;font-weight:600;color:var(--green-dark);
+  background:var(--sage-tint);padding:5px 11px;border-radius:999px;text-decoration:none}
+.mega-sub a:hover{background:var(--sage-soft)}
+.mobile-cats li.sub a{padding-left:26px;color:var(--muted);font-size:.93rem}
+
+/* Seasonal page in-page menu: Christmas / New Year pill links. */
+.season-menu{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 6px}
+.season-menu a{font-weight:600;font-size:.92rem;color:var(--green-dark);
+  background:var(--surface);border:1.5px solid var(--sage);padding:9px 18px;
+  border-radius:999px;text-decoration:none;transition:background .2s ease,color .2s ease}
+.season-menu a:hover{background:var(--green);border-color:var(--green);color:#fff}
