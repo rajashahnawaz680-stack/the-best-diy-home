@@ -362,6 +362,30 @@
     });
   }
 
+  /* Mobile Categories toggle: tapping "Categories" in the mobile
+     panel shows ONLY the category list (hidden by default). */
+  var mCatToggle = document.querySelector(".mobile-cat-toggle");
+  var mCatList = document.getElementById("mobile-cats-list");
+  if (mCatToggle && mCatList) {
+    mCatToggle.addEventListener("click", function () {
+      var open = mCatToggle.getAttribute("aria-expanded") === "true";
+      mCatToggle.setAttribute("aria-expanded", open ? "false" : "true");
+      mCatList.hidden = open;
+    });
+  }
+
+  /* Mobile Seasonal Decor submenu: same Christmas/New Year menu as
+     desktop, opened by tapping "Seasonal Decor" in the mobile panel. */
+  var mSubToggle = document.querySelector(".mobile-sub-toggle");
+  var mSub = document.querySelector(".mobile-sub");
+  if (mSubToggle && mSub) {
+    mSubToggle.addEventListener("click", function () {
+      var open = mSubToggle.getAttribute("aria-expanded") === "true";
+      mSubToggle.setAttribute("aria-expanded", open ? "false" : "true");
+      mSub.hidden = open;
+    });
+  }
+
   /* ---------------- Mobile panel ---------------- */
   var navToggle = document.querySelector(".nav-toggle");
   var mobilePanel = document.getElementById("mobile-panel");
