@@ -702,3 +702,10 @@ form button:hover{background:var(--green-dark)}
 /* Fix: the nav's generic ul display rule overrode the sub-menu's
    hidden state — force it closed until the chevron opens it. */
 .sub-menu[hidden]{display:none !important}
+
+/* Owner: header height up a touch (2026-11-22). */
+.announce p{padding-top:8px;padding-bottom:8px}
+.header-main{padding-top:14px;padding-bottom:14px}
+.main-nav a{padding-top:12px;padding-bottom:12px}
+.sub-toggle{padding-top:12px;padding-bottom:12px}
+.brand-name{font-size:1.5rem}
