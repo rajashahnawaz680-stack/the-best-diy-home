@@ -93,12 +93,12 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#latest">DIY Ideas</a></li>
         <li><a href="categories/bedroom-makeover.html">Makeovers</a></li>
-        <li><a href="categories/seasonal-home-decor.html">Seasonal Decor</a></li>
+        <li class="has-sub-m"><button type="button" class="mobile-sub-toggle" aria-expanded="false">Seasonal Decor<span class="chev" aria-hidden="true">&#9662;</span></button><ul class="mobile-sub" hidden><li><a href="categories/seasonal-home-decor.html#christmas">Christmas Home Decor</a></li><li><a href="categories/seasonal-home-decor.html#new-year">New Year Home Decor</a></li></ul></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <p class="mobile-cat-label">Categories</p>
-      <ul class="mobile-cats">
+      <button type="button" class="mobile-cat-toggle" aria-expanded="false" aria-controls="mobile-cats-list">Categories<span class="chev" aria-hidden="true">&#9662;</span></button>
+      <ul class="mobile-cats" id="mobile-cats-list" hidden>
         <li><a href="categories/bedroom-makeover.html">Bedroom Makeover</a></li>
         <li><a href="categories/diy-wall-decor.html">DIY Wall Decor</a></li>
         <li><a href="categories/dollar-store-diy-decor.html">Dollar Store DIY Decor</a></li>
@@ -127,9 +127,8 @@
   <section id="latest">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Fresh From the Blog</p>
-        <h2>Latest DIY Articles</h2>
-        <p>Our newest published guides, newest first — the collection grows one project at a time.</p>
+        <h2>The Latest</h2>
+        <p>Our newest decor guides, fresh from The Best DIY Home.</p>
       </div>
       <div class="article-grid latest-grid" id="latest-grid" aria-live="polite"></div>
       <p class="count-line" id="latest-count"></p>
