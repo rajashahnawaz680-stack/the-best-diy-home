@@ -59,30 +59,81 @@
       "</div></article>";
   }
 
-  /* Homepage Latest: newest published articles, maximum 15. */
-  var latestGrid = document.getElementById("latest-grid");
-  if (latestGrid) {
+  /* ------------- Paginated article grids (Latest + archive) -------- */
+  /* 15 articles per page = 3 per row x 5 rows. One shared renderer:
+     the current page's cards go into the grid, a pagination bar
+     (Prev / page numbers / Next) is inserted directly after the grid,
+     and the count element under the bar reads
+     "Showing A–B of Z articles (Page N of M)". */
+  var ARTICLES_PER_PAGE = 15;
+  var paginatedGrids = {};
+
+  function setupPaginatedGrid(gridId, countId) {
+    var grid = document.getElementById(gridId);
+    if (!grid) return;
     var published = publishedArticles(ALL_ARTICLES);
-    var shown = published.slice(0, 15);
-    latestGrid.innerHTML = shown.map(articleCardHTML).join("");
-    var latestCount = document.getElementById("latest-count");
-    if (latestCount) {
-      latestCount.textContent = "Showing " + shown.length + " of " +
-        published.length + " published articles";
+    var total = published.length;
+    var pages = Math.max(1, Math.ceil(total / ARTICLES_PER_PAGE));
+    var countEl = document.getElementById(countId);
+    var bar = document.createElement("nav");
+    bar.className = "pagination";
+    bar.setAttribute("aria-label", "Article pages");
+    if (countEl && countEl.parentNode) {
+      countEl.parentNode.insertBefore(bar, countEl);
+    } else if (grid.parentNode) {
+      grid.parentNode.insertBefore(bar, grid.nextSibling);
     }
+    var current = 1;
+
+    function render(page) {
+      current = Math.min(Math.max(1, page), pages);
+      var start = (current - 1) * ARTICLES_PER_PAGE;
+      var slice = published.slice(start, start + ARTICLES_PER_PAGE);
+      grid.innerHTML = slice.map(articleCardHTML).join("");
+      var html = '<button type="button" class="page-btn" data-page="' +
+        (current - 1) + '"' + (current === 1 ? " disabled" : "") +
+        ">&lsaquo; Prev</button>";
+      for (var p = 1; p <= pages; p++) {
+        html += '<button type="button" class="page-btn' +
+          (p === current ? " active" : "") + '" data-page="' + p + '"' +
+          (p === current ? ' aria-current="page"' : "") + ">" + p + "</button>";
+      }
+      html += '<button type="button" class="page-btn" data-page="' +
+        (current + 1) + '"' + (current === pages ? " disabled" : "") +
+        ">Next &rsaquo;</button>";
+      bar.innerHTML = html;
+      if (countEl) {
+        var from = total === 0 ? 0 : start + 1;
+        var to = start + slice.length;
+        countEl.textContent = "Showing " + from + "\u2013" + to + " of " +
+          total + " articles (Page " + current + " of " + pages + ")";
+      }
+    }
+
+    bar.addEventListener("click", function (e) {
+      var btn = e.target;
+      while (btn && btn !== bar &&
+             !(btn.tagName === "BUTTON" && btn.hasAttribute("data-page"))) {
+        btn = btn.parentNode;
+      }
+      if (!btn || btn === bar || btn.disabled) return;
+      var target = parseInt(btn.getAttribute("data-page"), 10);
+      if (!isNaN(target) && target !== current &&
+          target >= 1 && target <= pages) {
+        render(target);
+        if (grid.scrollIntoView) {
+          grid.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    });
+
+    render(1);
+    paginatedGrids[gridId] = { render: render, bar: bar, grid: grid };
   }
 
-  /* Archive page: every published article, no cap. */
-  var archiveGrid = document.getElementById("articles-grid");
-  if (archiveGrid) {
-    var allPublished = publishedArticles(ALL_ARTICLES);
-    archiveGrid.innerHTML = allPublished.map(articleCardHTML).join("");
-    var archiveCount = document.getElementById("articles-count");
-    if (archiveCount) {
-      archiveCount.textContent = "Showing " + allPublished.length + " of " +
-        allPublished.length + " published articles";
-    }
-  }
+  /* Homepage Latest and the All Articles archive share the renderer. */
+  setupPaginatedGrid("latest-grid", "latest-count");
+  setupPaginatedGrid("articles-grid", "articles-count");
 
   /* ---------------- Search data (articles derived + categories) ------- */
   var CATEGORY_DATA = [
@@ -447,6 +498,9 @@
     ARTICLES: ALL_ARTICLES,
     publishedArticles: publishedArticles,
     articleCardHTML: articleCardHTML,
+    ARTICLES_PER_PAGE: ARTICLES_PER_PAGE,
+    paginatedGrids: paginatedGrids,
+    setupPaginatedGrid: setupPaginatedGrid,
     searchItems: searchItems,
     validateEmail: validateEmail,
     NEWSLETTER_ENDPOINT: NEWSLETTER_ENDPOINT
