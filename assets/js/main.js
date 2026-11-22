@@ -318,6 +318,40 @@
     });
   }
 
+  /* ---------------- Seasonal Decor submenu (header nav) ----------------
+     Click-only, same rules as the Categories menu: the chevron button
+     toggles it, outside clicks and Escape close it. */
+  var subToggle = document.querySelector(".sub-toggle");
+  var subMenu = document.querySelector(".sub-menu");
+  if (subToggle && subMenu) {
+    var setSub = function (open) {
+      subToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      subMenu.hidden = !open;
+    };
+    var subOpen = function () {
+      return subToggle.getAttribute("aria-expanded") === "true";
+    };
+    subToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setSub(!subOpen());
+    });
+    subMenu.addEventListener("click", function (e) {
+      var link = e.target && e.target.closest ? e.target.closest("a") : null;
+      if (link) setSub(false);
+    });
+    document.addEventListener("click", function (e) {
+      if (!subOpen()) return;
+      if (subMenu.contains(e.target) || subToggle.contains(e.target)) return;
+      setSub(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && subOpen()) {
+        setSub(false);
+        subToggle.focus();
+      }
+    });
+  }
+
   /* ---------------- Mobile panel ---------------- */
   var navToggle = document.querySelector(".nav-toggle");
   var mobilePanel = document.getElementById("mobile-panel");
