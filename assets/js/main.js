@@ -335,6 +335,16 @@
       e.stopPropagation();
       setSub(!subOpen());
     });
+    /* Clicking the "Seasonal Decor" link itself also opens the menu
+       (owner's request) instead of navigating away. */
+    var subLink = subToggle.parentNode ? subToggle.parentNode.querySelector("a") : null;
+    if (subLink) {
+      subLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        setSub(!subOpen());
+      });
+    }
     subMenu.addEventListener("click", function (e) {
       var link = e.target && e.target.closest ? e.target.closest("a") : null;
       if (link) setSub(false);
