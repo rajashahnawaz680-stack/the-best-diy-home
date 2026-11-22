@@ -572,3 +572,70 @@ form button:hover{background:var(--green-dark)}
   .combo-news{border-left:0;border-top:1px solid rgba(255,255,255,.25);
     padding-left:0;padding-top:26px}
 }
+
+/* ---------- v6.2: pagination, full-width Latest grid, compact card
+   text, footer brand setup ---------- */
+/* Latest grid: full-width 3 columns on desktop (3 per row), 2 on
+   tablet, 1 on mobile — replaces the v6.1 centred max-width rule. */
+.latest-grid{grid-template-columns:repeat(3,1fr);justify-content:stretch}
+@media (max-width:980px){
+  .latest-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .latest-grid{grid-template-columns:1fr}
+}
+
+/* Pagination bar (Latest + archive): Prev / numbers / Next. */
+.pagination{display:flex;justify-content:center;align-items:center;
+  flex-wrap:wrap;gap:8px;margin-top:28px}
+.pagination .page-btn{min-width:42px;height:42px;padding:0 12px;
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  font:inherit;font-weight:600;color:var(--charcoal);cursor:pointer;
+  transition:transform .15s ease,background .15s ease,color .15s ease}
+.pagination .page-btn:hover:not(:disabled){transform:translateY(-1px);
+  border-color:var(--green);color:var(--green)}
+.pagination .page-btn.active{background:var(--green);
+  border-color:var(--green);color:#fff;cursor:default}
+.pagination .page-btn:disabled{opacity:.45;cursor:default;color:var(--muted)}
+#latest-count,#articles-count{text-align:center;margin-top:14px}
+
+/* Compact article cards: image size unchanged (4/3) — the card gets
+   shorter through tighter text only. */
+.ac-body{padding:15px 16px}
+.ac-meta{font-size:.78rem;margin:0 0 5px}
+.ac-body h3{font-size:1.08rem;line-height:1.3;margin:0 0 .35em}
+.ac-excerpt{font-size:.92rem;margin:0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden}
+.ac-foot{padding-top:10px;font-size:.9rem}
+
+/* Footer brand: tidy left-aligned lockup + Pinterest pill button. */
+.footer-logo{display:inline-flex;flex-direction:column;
+  align-items:flex-start;text-align:left;gap:0}
+.footer-logo .brand-mark{width:46px;height:auto;color:var(--sage)}
+.footer-logo .brand-over{margin-top:4px}
+.footer-logo .brand-name{line-height:1.1}
+.footer-logo .brand-tag{margin-top:2px}
+.footer-pinterest{background:#E60023;color:#fff;padding:9px 18px;
+  border-radius:999px;margin-top:6px;text-decoration:none}
+.footer-pinterest:hover{background:#C8001E;color:#fff;text-decoration:none}
+.footer-pinterest .pin-icon{width:18px;height:18px;fill:#fff;
+  background:none;border-radius:0;padding:0;box-sizing:border-box}
+
+/* Pagination final style (owner reference): one compact centred group —
+   white Prev pill, terracotta active page, white Next pill; count line
+   centred underneath. */
+.pagination{justify-content:center;gap:10px}
+.pagination .page-btn{border-radius:12px;box-shadow:0 1px 3px rgba(58,46,37,.10)}
+.pagination .page-btn.active{background:#B65C38;
+  border-color:#B65C38;color:#fff}
+
+/* Categories section — reference card type: photo on top, white body
+   below with serif title, one-line description and a soft count pill.
+   3 cards per row on desktop (owner's reference image). */
+.cat-grid{grid-template-columns:repeat(3,1fr);gap:26px}
+@media (max-width:980px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.cat-grid{grid-template-columns:1fr}}
+.cat-card{border:1px solid var(--border)}
+.cat-card-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.count-pill{margin-top:12px}
